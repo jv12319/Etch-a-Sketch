@@ -1,13 +1,15 @@
 #container{
     display: flex;
-    flex-wrap: wrap;
     width: 960px;
     margin: auto;
+    flex-wrap: wrap;
 }
 
 .box{
-    border: 1px;
-    margin: 1px;
+    box-sizing: border-box;
+    width: 1px;
+    border: solid #f3f3f7 1px;
+    padding: 0px;
 }
 
 body{
