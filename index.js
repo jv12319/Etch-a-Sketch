@@ -1,9 +1,12 @@
+let rows = 16;
+let columns = 16;
+const container = document.getElementById("container"); 
 
 
-function createBox(){
+function createBox(width){
     const box = document.createElement("div");
     box.setAttribute('class','box')
-    box.style.width = "60px";
+    box.style.width = (960 / width) + "px";
     box.style.height = "50px";
     box.style.backgroundColor = "black";
     return box;
@@ -14,15 +17,24 @@ function changeToRedColor(event) {
 }
 
 function fillContainer(){
-    const container = document.getElementById("container")
-    for (let row = 0; row < 16; row++){
-        for (let column = 0; column < 16; column++){
-            const box = createBox();
+    for (let i = 0; i < rows; i++){
+        for (let i = 0; i < columns; i++){
+            const box = createBox(columns);
             box.addEventListener("mouseover", changeToRedColor);
             container.appendChild(box);
         }
     }
 }
 
-
 fillContainer();
+
+let question = document.getElementById("question")
+
+question.addEventListener("click", function(){
+    container.textContent = "";
+    let size = prompt("Enter the size of your grid: ");
+    rows = size;
+    columns = size;
+    createBox(columns);
+    fillContainer();
+})
