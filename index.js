@@ -1,7 +1,14 @@
 let rows = 16;
 let columns = 16;
 const container = document.getElementById("container"); 
+const slider1 = document.getElementById("slider1");
 
+slider1.addEventListener("input", updateSlider);
+
+function updateSlider(){
+    const hue = slider1.value;
+    slider1.style.background = `linear-gradient(to right, hsl(0, 100%, 50%), hsl(${hue}, 100%, 50%))`;
+}
 
 function createBox(width){
     const box = document.createElement("div");
@@ -12,15 +19,17 @@ function createBox(width){
     return box;
 }
 
-function changeToRedColor(event) {
-    event.target.style.backgroundColor = "red";
+function changeColor(event) {
+    //event.target.style.backgroundColor = slider1;
+    const hue = slider1.value;
+    event.target.style.backgroundColor = `hsl(${hue}, 100%, 50%)`;
 }
 
 function fillContainer(){
     for (let i = 0; i < rows; i++){
         for (let i = 0; i < columns; i++){
             const box = createBox(columns);
-            box.addEventListener("mouseover", changeToRedColor);
+            box.addEventListener("mouseover", changeColor);
             container.appendChild(box);
         }
     }
